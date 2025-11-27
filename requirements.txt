@@ -1,0 +1,6 @@
+## is a utility file used in python to list out libraries that appplication is using/intergrating
+
+pillow
+cloudinary
+django
+python-decouple
