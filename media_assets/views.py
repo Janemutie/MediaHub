@@ -21,7 +21,7 @@ def dashboard_view(request):
     #capture all assets
     media_list = MediaAsset.objects.filter(is_public=True)
     #power search functionality for my user
-    query = request.GET('q')
+    query = request.GET.get('q')
     if query:
         media_list = media_list.filter(
             Q(title__icontains=query) |
@@ -85,8 +85,39 @@ def media_detail_view(request, pk):
 #edit and delete views 
 @login_required
 def edit_media_view(request, pk):
-    pass
+    '''Edit media assets using primary key(pk)'''
+    media = get_object_or_404(MediaAsset, pk=pk)
+    if not media.can_edit(request.user):
+        messages.error(request, "You cannot edit this file.")
+        return redirect('media_assets:dashboard')
+    
+    if request.method == 'POST':
+        form = MediaAssetForm(request.POST, request.FILES, instance=media)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Media updated successfully!")
+            return redirect('media_assets:media_detail', pk=pk)
+    else:
+        form = MediaAssetForm(instance=media)
+
+    return render(request, 'media_assets/edit_media.html', {
+        'form': form,
+        'media': media
+    })
 
 @login_required
 def delete_media_view(request, pk):
-    pass
+    '''Delete media using pk'''
+    media = get_object_or_404(MediaAsset, pk=pk)
+    if not media.can_edit(request.user):
+        messages.error(request, "You cannot delete this media.")
+        return redirect('media_assets:dashboard')
+    
+    if request.method == 'POST':
+        media.delete()
+        messages.success(request, "Deleted successfully!")
+        return redirect('media_assets:my_media')
+    
+    return render(request, 'media_assets/delete_media.html', {
+        'media': media
+    })
