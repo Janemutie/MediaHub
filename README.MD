@@ -18,7 +18,8 @@ Media sharing platform thta has role based access
 ## Steps
 - install the libraries :
     pip install libraryname
-    pip install -r requirements.txt 
+    python -m pip install -r requirements.txt
+ 
 - create our apps (accounts and media_assets)
 - configure our project settings
     - register our apps
