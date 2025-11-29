@@ -17,12 +17,12 @@ Media sharing platform thta has role based access
 
 ## Steps
 - install the libraries :
-    pip install libraryname
+     python -m pip install libraryname
     python -m pip install -r requirements.txt
  
 - create our apps (accounts and media_assets)
 - configure our project settings
-    - register our apps
+    - register our apps in settings.py
     - register cloudinary (give the claudinary configs)
     - register a custom authentication process
     - emails registry
@@ -31,7 +31,7 @@ Media sharing platform thta has role based access
 Authentication = identity identification, who are you
 Authorization = access priviledges - role based authorization , token based authorization
 
-1. Cretae our custom user models -> models.py
+1. Create our custom user models -> models.py
 2. Extend the integrate form captures -> forms.py
 3. Create the views action for registration and login,logout and profile view, custompasswordresetview,custompasswordrestconfirmresetview -> views.py
 4. Register the view actions as URL route - urls.py
@@ -65,3 +65,8 @@ Authorization = access priviledges - role based authorization , token based auth
 1. Create a .env file for development purposes - store your infor as variable references
 2. Create a .gitignore file for github purposes - include .env as one of the ignored files
  This abstracts sensitive info from the main application code
+
+## M-PESA INTEGRATION
+1. Created a separate app that will contain our mpesa intergration procedures
+2. Create a model, transactions model - this will update made on our app
+3. Settings.py project - configre the needed envioronmental credentials
