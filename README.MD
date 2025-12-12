@@ -70,3 +70,19 @@ Authorization = access priviledges - role based authorization , token based auth
 1. Created a separate app that will contain our mpesa intergration procedures
 2. Create a model, transactions model - this will update made on our app
 3. Settings.py project - configre the needed envioronmental credentials
+4. populate views and urls tomap to the views and the respective templates
+
+## MPESA + MEDIAHUB app connection
+- Mediadetails screen my user will see a donate to me button
+- Donate to me -> redirected to the payment screen
+- Pay -> utilize the views function for the proper redirect
+
+## Changes/updates
+1. Settings.py  - allowed hosts and csrf domains
+2. urls.py/projects - adding namespace for the mpesa app
+3. Templates
+    media_assets - media_detail.html - added a button to mimic a checkout
+    mediampesa - index.html and waiting.html
+4. Mediampesa app
+    - urls.pr
+    - views.py - namespace addition to routes
